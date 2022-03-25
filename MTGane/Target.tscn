@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Target.gd" type="Script" id=1]
+[ext_resource path="res://images/target.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 27.0185
+
+[node name="Target" type="Area2D"]
+collision_mask = 2
+input_pickable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="impact" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="exit_screen" type="VisibilityNotifier2D" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_Target_area_entered"]
+[connection signal="screen_exited" from="exit_screen" to="." method="_on_VisibilityNotifier2D_screen_exited"]
